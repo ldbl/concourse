@@ -15,7 +15,7 @@ gcloud container clusters create concourse --image-type ubuntu --machine-type n1
 helm install stable/concourse --set concourse.baggageclaimDriver=overlay
 
 ### Create pipeline
-
+```
 export PROJECT=$(gcloud config get-value project)
 export BUCKET=gs://$PROJECT-helm-repo
 gsutil mb -l us-central1 $BUCKET
@@ -33,3 +33,4 @@ EOF
 
 fly -t local set-pipeline -p dev-site-deploy -c pipeline.yaml -l secrets.yaml
 fly -t local unpause-pipeline -p dev-site-deploy
+````
